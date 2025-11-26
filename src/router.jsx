@@ -6,20 +6,18 @@ import Products from "./Pages/Product/Products";
 import Hero from "./Pages/Product/Home/Hero";
 
 // Admin Layout
-import App from "./App"; 
+import App from "./App";
 import Sidebar from "./component/Layout/Sidebar";
 import Header from "./component/Layout/Header";
 
 // New: Admin Login
 import AdminLogin from "./component/Layout/AdminLogin";
-import UserLogin from "./UserLogin/UserLogin";
-
-// New: Dashboard
-// import Dashboard from "./Pages/Product/Dashboard"; 
+import Register from "./component/Layout/PublicLayout/Register";
+import SoftZino from "./component/Layout/SoftZino";
 
 const router = createBrowserRouter([
   // -------------------
-  // Public Routes
+  // Public
   // -------------------
   {
     path: "/",
@@ -31,10 +29,10 @@ const router = createBrowserRouter([
     ],
   },
 
-  {
-    path: "/user-login",
-    element: <UserLogin />,
-  },
+  // {
+  //   path: "/user-login",
+  //   element: <UserLogin />,
+  // },
 
   // -------------------
   // Admin Login Route
@@ -42,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/admin-login",
     element: <AdminLogin />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 
   // -------------------
@@ -54,13 +56,12 @@ const router = createBrowserRouter([
       // { path: "dashboard", element: <Dashboard /> }, // /admin/dashboard
       { path: "sidebar", element: <Sidebar /> },
       { path: "header", element: <Header /> },
+      { path: "softzino", element: <SoftZino /> },
     ],
   },
 ]);
 
 export default router;
-
-
 
 // import { createBrowserRouter } from "react-router-dom";
 // import PublicLayout from "./component/Layout/PublicLayout/PublicLayout";
@@ -93,8 +94,6 @@ export default router;
 // ]);
 
 // export default router;
-
-
 
 // import { createBrowserRouter } from "react-router-dom";
 // import App from "./App";
@@ -130,10 +129,6 @@ export default router;
 
 // export default router;
 
-
-
-
-
 // // import { createBrowserRouter } from "react-router-dom";
 // // import App from "./App";
 // // import Products from "./Pages/Product/Products";
@@ -155,10 +150,6 @@ export default router;
 // // ]);
 
 // // export default router;
-
-
-
-
 
 // // import { createBrowserRouter } from "react-router-dom";
 // // import App from "./App";

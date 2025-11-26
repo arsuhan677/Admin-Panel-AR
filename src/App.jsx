@@ -16,12 +16,10 @@
 // }
 // // export default App;
 
-
-
-
 import { Outlet } from "react-router-dom";
 import Sidebar from "./component/Layout/Sidebar";
-import Header from "./component/Layout/Header"
+import Header from "./component/Layout/Header";
+import SoftZino from "./component/Layout/SoftZino";
 
 function App() {
   return (
@@ -30,6 +28,7 @@ function App() {
 
       <div className="flex-1">
         <Header />
+        <SoftZino />
         <Outlet />
       </div>
     </div>
@@ -37,10 +36,6 @@ function App() {
 }
 
 export default App;
-
-
-
-
 
 // // import { Sidebar } from "lucide-react"
 // import Sidebar from "./component/Layout/Sidebar"

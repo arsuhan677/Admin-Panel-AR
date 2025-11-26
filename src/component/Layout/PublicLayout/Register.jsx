@@ -1,45 +1,54 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import supabase from "../../Utils/SupaBase";
+import supabase from "../../../Utils/SupaBase";
 
-function AdminLogin(props) {
+const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const adminUser = "arsuhan677@gmail.com";
-
-  const handleSignIn = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({
+    signUpNewUser(email, password);
+  };
+
+  const signUpNewUser = async (email, password) => {
+    const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
+      options: { emailRedirectTo: "http://localhost:5173" },
     });
     if (error) {
       alert(error.message);
-      console.log("signin error", error);
+      console.log("error signing up", error);
       return;
     }
-    if (data.user) {
-      console.log("login success", data);
-      if (data.user.email === adminUser) {
-        navigate("/admin");
-        return;
-      }
-      navigate("/");
-      // navigate("/softzino");
-      return;
+    if (data) {
+      alert("Check your email to confirm your account!");
+      console.log("success signin up", data);
     }
+    navigate("/");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form
-        onSubmit={handleSignIn}
+        onSubmit={handleSubmit}
         className="bg-white p-8 rounded-xl shadow-lg w-120"
       >
-        <h2 className="text-2xl font-semibold mb-6 text-center">Login Page</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-center">Register Pgae</h2>
 
+        <div className="mb-4">
+          <label className="block mb-1 font-medium">Name: </label>
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border px-3 py-2 rounded-md"
+            placeholder="Enter full name"
+            required
+          />
+        </div>
         <div className="mb-4">
           <label className="block mb-1 font-medium">Email</label>
           <input
@@ -63,9 +72,12 @@ function AdminLogin(props) {
         </div>
 
         <p>
-          Don't have any account?{" "}
-          <span onClick={() => navigate("/register")} className="text-red-600 cursor-pointer">
-            register
+          Already have account?
+          <span
+            onClick={() => navigate("/admin-login")}
+            className="text-red-600 cursor-pointer"
+          >
+            Login
           </span>
         </p>
 
@@ -73,11 +85,11 @@ function AdminLogin(props) {
           type="submit"
           className="w-full bg-blue-600 cursor-pointer text-white py-2 rounded-md font-medium hover:bg-blue-700 duration-200"
         >
-          Login
+          Register
         </button>
       </form>
     </div>
   );
-}
+};
 
-export default AdminLogin;
+export default Register;
